@@ -1,7 +1,7 @@
 variable "project_name" {
   description = "Name of the project, used as prefix for all resources"
   type        = string
-  default     = "todo-app"
+  default     = "nimbus-retail"
 }
 
 variable "environment" {
@@ -16,17 +16,17 @@ variable "aws_region" {
   default     = "us-east-2"
 }
 
-variable "eks_version" {
-  description = "Kubernetes version for the EKS cluster"
-  type        = string
-  default     = "1.32"
-}
+# variable "eks_version" {
+#   description = "Kubernetes version for the EKS cluster"
+#   type        = string
+#   default     = "1.32"
+# }
 
-variable "node_instance_type" {
-  description = "EC2 instance type for EKS worker nodes"
-  type        = string
-  default     = "t3.small"
-}
+# variable "node_instance_type" {
+#   description = "EC2 instance type for EKS worker nodes"
+#   type        = string
+#   default     = "t3.small"
+# }
 
 variable "jenkins_instance_type" {
   description = "EC2 instance type for Jenkins server"

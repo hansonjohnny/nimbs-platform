@@ -10,15 +10,15 @@
 # ─────────────────────────────────────────
 
 # ── Project ───────────────────────────────
-project_name = "todo-app"
+project_name = "nimbus-retail"
 environment  = "dev"
 
 # ── AWS ───────────────────────────────────
 aws_region = "us-east-2"
 
 # ── EKS ───────────────────────────────────
-eks_version        = "1.32"
-node_instance_type = "t3.small"
+# eks_version        = "1.32"
+# node_instance_type = "t3.small"
 
 # ── Jenkins EC2 ───────────────────────────
 jenkins_instance_type = "m7i-flex.large"
@@ -26,4 +26,4 @@ jenkins_instance_type = "m7i-flex.large"
 # restrict SSH to your own IP for security
 # find your IP at: https://checkip.amazonaws.com
 # format: x.x.x.x/32
-jenkins_ssh_cidr = "154.161.49.246/32"
+jenkins_ssh_cidr = "102.176.94.47/32"

@@ -7,7 +7,7 @@
 # ─────────────────────────────────────────
 
 # ── Project ───────────────────────────────
-project_name = "todo-app"
+project_name = "nimbus-retail"
 environment  = "dev"
 
 # ── AWS ───────────────────────────────────
