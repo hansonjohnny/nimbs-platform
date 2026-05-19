@@ -159,3 +159,31 @@ resource "aws_iam_role_policy_attachment" "eks_ebs_csi" {
 #   role       = aws_iam_role.alb_controller.name
 #   policy_arn = aws_iam_policy.alb_controller.arn
 # }
+
+# ─────────────────────────────────────────
+# IAM POLICY — EXTERNAL SECRETS OPERATOR
+# ─────────────────────────────────────────
+resource "aws_iam_policy" "external_secrets" {
+  name        = "${var.project_name}-external-secrets-policy"
+  description = "Allows ESO to read secrets from Secrets Manager"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:ListSecrets"
+        ]
+        Resource = "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:${var.project_name}/*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "external_secrets" {
+  role       = aws_iam_role.external_secrets.name
+  policy_arn = aws_iam_policy.external_secrets.arn
+}

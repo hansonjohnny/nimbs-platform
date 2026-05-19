@@ -250,3 +250,34 @@ resource "aws_security_group" "rds" {
     Environment = var.environment
   }
 }
+
+# ─────────────────────────────────────────
+# SECURITY GROUP — ELASTICACHE REDIS
+# only EKS nodes can connect
+# ─────────────────────────────────────────
+resource "aws_security_group" "redis" {
+  name        = "${var.project_name}-redis-sg"
+  description = "Security group for ElastiCache Redis"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [aws_security_group.eks_nodes.id]
+    description     = "Allow EKS nodes to connect to Redis"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound"
+  }
+
+  tags = {
+    Name        = "${var.project_name}-redis-sg"
+    Environment = var.environment
+  }
+}

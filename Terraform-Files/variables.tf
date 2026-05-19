@@ -74,3 +74,20 @@ variable "rds_password" {
   sensitive   = true
 }
 
+variable "redis_node_type" {
+  description = "ElastiCache node type"
+  type        = string
+  default     = "cache.t3.micro"
+}
+
+variable "jwt_secret" {
+  description = "JWT signing secret for auth-service"
+  type        = string
+  sensitive   = true
+}
+
+variable "kafka_broker" {
+  description = "Kafka broker endpoint — update after Strimzi is installed"
+  type        = string
+  default     = "kafka-cluster-kafka-bootstrap.nimb.svc.cluster.local:9092"
+}
