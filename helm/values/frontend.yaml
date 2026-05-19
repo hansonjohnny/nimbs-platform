@@ -1,0 +1,26 @@
+image:
+  repository: <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/frontend
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+livenessProbe:
+  path: /
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  path: /
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "100m"

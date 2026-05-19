@@ -1,0 +1,21 @@
+image:
+  repository: <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/order-service
+  tag: "latest"
+
+secretName: order-service-secrets
+
+env:
+  - name: PORT
+    value: "3000"
+  - name: DB_NAME
+    value: "orders"
+  - name: KAFKA_GROUP_ID
+    value: "order-service"
+
+secretEnv:
+  - name: DB_HOST
+    key: db-host
+  - name: DB_PASSWORD
+    key: db-password
+  - name: KAFKA_BROKER
+    key: kafka-broker

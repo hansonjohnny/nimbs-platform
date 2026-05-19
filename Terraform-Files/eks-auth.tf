@@ -1,31 +1,34 @@
-# # ─────────────────────────────────────────
-# # EKS AUTH — aws-auth ConfigMap
-# # maps IAM roles to Kubernetes users
-# # ─────────────────────────────────────────
-# resource "kubernetes_config_map_v1_data" "aws_auth" {
-#   metadata {
-#     name      = "aws-auth"
-#     namespace = "kube-system"
-#   }
+# ─────────────────────────────────────────
+# EKS ACCESS ENTRY — worker nodes
+# ─────────────────────────────────────────
+resource "aws_eks_access_entry" "nodes" {
+  cluster_name  = aws_eks_cluster.main.name
+  principal_arn = aws_iam_role.eks_nodes.arn
+  type          = "EC2_LINUX"
 
-#   data = {
-#     mapRoles = yamlencode([
-#       # EKS worker nodes
-#       {
-#         rolearn  = aws_iam_role.eks_nodes.arn
-#         username = "system:node:{{EC2PrivateDNSName}}"
-#         groups   = ["system:bootstrappers", "system:nodes"]
-#       },
-#       # Jenkins EC2 — full cluster admin
-#       {
-#         rolearn  = aws_iam_role.jenkins_ec2.arn
-#         username = "jenkins"
-#         groups   = ["system:masters"]
-#       }
-#     ])
-#   }
+  depends_on = [aws_eks_cluster.main]
+}
 
-#   force = true
+# ─────────────────────────────────────────
+# EKS ACCESS ENTRY — your IAM user
+# for kubectl access from your machine
+# ─────────────────────────────────────────
+resource "aws_eks_access_entry" "admin" {
+  cluster_name  = aws_eks_cluster.main.name
+  principal_arn = "arn:aws:iam::${var.aws_account_id}:user/${var.iam_admin_user}"
+  type          = "STANDARD"
 
-#   depends_on = [aws_eks_cluster.main]
-# }
+  depends_on = [aws_eks_cluster.main]
+}
+
+resource "aws_eks_access_policy_association" "admin" {
+  cluster_name  = aws_eks_cluster.main.name
+  principal_arn = "arn:aws:iam::${var.aws_account_id}:user/${var.iam_admin_user}"
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+  access_scope {
+    type = "cluster"
+  }
+
+  depends_on = [aws_eks_access_entry.admin]
+}

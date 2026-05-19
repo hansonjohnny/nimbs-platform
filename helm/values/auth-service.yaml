@@ -1,0 +1,19 @@
+image:
+  repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/auth-service
+  tag: "latest"
+
+secretName: auth-service-secrets
+
+env:
+  - name: PORT
+    value: "3000"
+  - name: DB_NAME
+    value: "auth"
+
+secretEnv:
+  - name: DB_HOST
+    key: db-host
+  - name: DB_PASSWORD
+    key: db-password
+  - name: JWT_SECRET
+    key: jwt-secret

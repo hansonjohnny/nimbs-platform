@@ -16,17 +16,17 @@ variable "aws_region" {
   default     = "us-east-2"
 }
 
-# variable "eks_version" {
-#   description = "Kubernetes version for the EKS cluster"
-#   type        = string
-#   default     = "1.32"
-# }
+variable "eks_version" {
+  description = "Kubernetes version for the EKS cluster"
+  type        = string
+  default     = "1.32"
+}
 
-# variable "node_instance_type" {
-#   description = "EC2 instance type for EKS worker nodes"
-#   type        = string
-#   default     = "t3.small"
-# }
+variable "node_instance_type" {
+  description = "EC2 instance type for EKS worker nodes"
+  type        = string
+  default     = "t3.small"
+}
 
 variable "jenkins_instance_type" {
   description = "EC2 instance type for Jenkins server"
@@ -39,3 +39,14 @@ variable "jenkins_ssh_cidr" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "aws_account_id" {
+  description = "AWS account ID"
+  type        = string
+}
+
+variable "iam_admin_user" {
+  description = "IAM username for kubectl access"
+  type        = string
+}
+

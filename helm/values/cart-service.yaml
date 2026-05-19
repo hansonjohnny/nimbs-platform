@@ -1,0 +1,21 @@
+image:
+  repository: <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/cart-service
+  tag: "latest"
+
+secretName: cart-service-secrets
+
+env:
+  - name: PORT
+    value: "3000"
+  - name: DB_NAME
+    value: "cart"
+  - name: REDIS_PORT
+    value: "6379"
+
+secretEnv:
+  - name: DB_HOST
+    key: db-host
+  - name: DB_PASSWORD
+    key: db-password
+  - name: REDIS_HOST
+    key: redis-host

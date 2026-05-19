@@ -1,0 +1,45 @@
+# Default values for nimb-service chart
+# Override these in per-service values files
+
+replicaCount: 2
+
+image:
+  repository: ""       # set per service e.g. <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/auth-service
+  tag: "latest"        # updated by Jenkins pipeline on each build
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+namespace: nimb
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+livenessProbe:
+  path: /health
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  path: /health
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+# Environment variables — override per service
+env: []
+# - name: PORT
+#   value: "3000"
+
+# Secret references — override per service
+secretName: ""
+secretEnv: []
+# - name: DB_HOST
+#   key: db-host

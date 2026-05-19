@@ -58,12 +58,12 @@ output "jenkins_ssh" {
   value       = "ssh -i <your-key>.pem ubuntu@${aws_eip.jenkins.public_ip}"
 }
 
-# output "eks_cluster_name" {
-#   description = "EKS cluster name"
-#   value       = aws_eks_cluster.main.name
-# }
+output "eks_cluster_name" {
+  description = "EKS cluster name"
+  value       = aws_eks_cluster.main.name
+}
 
-# output "eks_cluster_endpoint" {
-#   description = "EKS cluster API endpoint"
-#   value       = aws_eks_cluster.main.endpoint
-# }
+output "eks_cluster_endpoint" {
+  description = "EKS cluster API endpoint"
+  value       = aws_eks_cluster.main.endpoint
+}
