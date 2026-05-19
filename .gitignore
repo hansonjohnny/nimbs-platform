@@ -7,17 +7,12 @@
 # ─────────────────────────────────────────
 # TERRAFORM
 # ─────────────────────────────────────────
-Terraform-Files/terraform.tfvars
-Terraform-Files/.terraform/
-Terraform-Files/.terraform.lock.hcl
-Terraform-Files/*.tfstate
-Terraform-Files/*.tfstate.backup
-
-# bootstrap folder
-Terraform-Files/bootstrap/.terraform/
-Terraform-Files/bootstrap/.terraform.lock.hcl
-Terraform-Files/bootstrap/*.tfstate
-Terraform-Files/bootstrap/*.tfstate.backup
+terraform.tfvars
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
 
 # ─────────────────────────────────────────
 # PYTHON
