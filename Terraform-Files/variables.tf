@@ -50,3 +50,27 @@ variable "iam_admin_user" {
   type        = string
 }
 
+variable "rds_instance_class" {
+  description = "RDS instance class"
+  type        = string
+  default     = "db.t3.micro"
+}
+
+variable "rds_allocated_storage" {
+  description = "Allocated storage for RDS in GB"
+  type        = number
+  default     = 20
+}
+
+variable "rds_username" {
+  description = "RDS master username"
+  type        = string
+  default     = "postgres"
+}
+
+variable "rds_password" {
+  description = "RDS master password — set in terraform.tfvars, never commit"
+  type        = string
+  sensitive   = true
+}
+

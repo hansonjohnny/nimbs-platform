@@ -48,6 +48,11 @@ output "jenkins_public_ip" {
   value       = aws_eip.jenkins.public_ip
 }
 
+output "rds_endpoint" {
+  description = "RDS PostgreSQL endpoint — use as DB_HOST in service secrets"
+  value       = aws_db_instance.main.endpoint
+}
+
 output "sonarqube_url" {
   description = "SonarQube URL"
   value       = "http://${aws_eip.jenkins.public_ip}:9000"
