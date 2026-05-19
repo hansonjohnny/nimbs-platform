@@ -1,5 +1,5 @@
 image:
-  repository: <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/catalog-service
+  repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/catalog-service
   tag: "latest"
 
 secretName: catalog-service-secrets

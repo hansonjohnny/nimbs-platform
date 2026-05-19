@@ -1,5 +1,5 @@
 image:
-  repository: <account-id>.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/notification-service
+  repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/notification-service
   tag: "latest"
 
 secretName: notification-service-secrets
