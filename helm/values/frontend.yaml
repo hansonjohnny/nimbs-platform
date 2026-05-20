@@ -1,6 +1,6 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/frontend
-  tag: "latest"
+  tag: "30"
 
 service:
   type: ClusterIP
