@@ -8,11 +8,7 @@ secretName: catalog-service-secrets
 env:
   - name: PORT
     value: "3000"
-  - name: DB_NAME
-    value: "catalog"
 
 secretEnv:
-  - name: DB_HOST
-    key: db-host
-  - name: DB_PASSWORD
-    key: db-password
+  - name: DATABASE_URL
+    key: database-url
