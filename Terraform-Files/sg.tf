@@ -2,41 +2,41 @@
 # SECURITY GROUP — ALB
 # accepts traffic from the internet
 # ─────────────────────────────────────────
-# resource "aws_security_group" "alb" {
-#   name        = "${var.project_name}-alb-sg"
-#   description = "Security group for Application Load Balancer"
-#   vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "alb" {
+  name        = "${var.project_name}-alb-sg"
+  description = "Security group for Application Load Balancer"
+  vpc_id      = aws_vpc.main.id
 
-#   ingress {
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#     description = "Allow HTTP from internet"
-#   }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow HTTP from internet"
+  }
 
-#   ingress {
-#     from_port   = 443
-#     to_port     = 443
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#     description = "Allow HTTPS from internet"
-#   }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow HTTPS from internet"
+  }
 
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#     description = "Allow all outbound"
-#   }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound"
+  }
 
-#   tags = {
-#     Name                                                = "${var.project_name}-alb-sg"
-#     Environment                                         = var.environment
-#     "kubernetes.io/cluster/${var.project_name}-cluster" = "shared"
-#   }
-# }
+  tags = {
+    Name                                                = "${var.project_name}-alb-sg"
+    Environment                                         = var.environment
+    "kubernetes.io/cluster/${var.project_name}-cluster" = "shared"
+  }
+}
 
 
 # ─────────────────────────────────────────
@@ -113,31 +113,31 @@ resource "aws_security_group" "eks_nodes" {
   }
 
   # ALB forwards HTTP traffic to pods
-  # ingress {
-  #   from_port       = 80
-  #   to_port         = 80
-  #   protocol        = "tcp"
-  #   security_groups = [aws_security_group.alb.id]
-  #   description     = "Allow ALB to reach pods on port 80"
-  # }
+  ingress {
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+    description     = "Allow ALB to reach pods on port 80"
+  }
 
   # ALB forwards traffic to backend pods on port 5000
-  # ingress {
-  #   from_port       = 5000
-  #   to_port         = 5000
-  #   protocol        = "tcp"
-  #   security_groups = [aws_security_group.alb.id]
-  #   description     = "Allow ALB to reach backend pods on port 5000"
-  # }
+  ingress {
+    from_port       = 5000
+    to_port         = 5000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+    description     = "Allow ALB to reach backend pods on port 5000"
+  }
 
   # ALB forwards HTTPS traffic to pods
-  # ingress {
-  #   from_port       = 443
-  #   to_port         = 443
-  #   protocol        = "tcp"
-  #   security_groups = [aws_security_group.alb.id]
-  #   description     = "Allow ALB to reach pods on port 443"
-  # }
+  ingress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+    description     = "Allow ALB to reach pods on port 443"
+  }
 
   egress {
     from_port   = 0

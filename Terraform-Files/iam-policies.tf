@@ -146,19 +146,19 @@ resource "aws_iam_role_policy_attachment" "eks_ebs_csi" {
 # ─────────────────────────────────────────
 # IAM POLICY FOR ALB CONTROLLER
 # ─────────────────────────────────────────
-# resource "aws_iam_policy" "alb_controller" {
-#   name        = "${var.project_name}-alb-controller-policy"
-#   description = "Policy for AWS Load Balancer Controller"
-#   policy      = file("${path.module}/alb-iam-policy.json")
-# }
+resource "aws_iam_policy" "alb_controller" {
+  name        = "${var.project_name}-alb-controller-policy"
+  description = "Policy for AWS Load Balancer Controller"
+  policy      = file("${path.module}/alb-iam-policy.json")
+}
 
 # ─────────────────────────────────────────
 # ATTACH POLICY TO ROLE
 # ─────────────────────────────────────────
-# resource "aws_iam_role_policy_attachment" "alb_controller" {
-#   role       = aws_iam_role.alb_controller.name
-#   policy_arn = aws_iam_policy.alb_controller.arn
-# }
+resource "aws_iam_role_policy_attachment" "alb_controller" {
+  role       = aws_iam_role.alb_controller.name
+  policy_arn = aws_iam_policy.alb_controller.arn
+}
 
 # ─────────────────────────────────────────
 # IAM POLICY — EXTERNAL SECRETS OPERATOR
