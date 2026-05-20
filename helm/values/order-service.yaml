@@ -13,6 +13,8 @@ readinessProbe:
 env:
   - name: PORT
     value: "3000"
+  - name: NODE_TLS_REJECT_UNAUTHORIZED
+    value: "0"
 
 secretEnv:
   - name: DATABASE_URL
