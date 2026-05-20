@@ -178,17 +178,17 @@ resource "aws_security_group" "jenkins" {
     description = "Jenkins UI - my IP only"
   }
   ingress {
-  from_port   = 8080
-  to_port     = 8080
-  protocol    = "tcp"
-  cidr_blocks = [
-    "192.30.252.0/22",
-    "185.199.108.0/22",
-    "140.82.112.0/20",
-    "143.55.64.0/20"
-  ]
-  description = "Jenkins - GitHub webhook IPs only"
-}
+    from_port = 8080
+    to_port   = 8080
+    protocol  = "tcp"
+    cidr_blocks = [
+      "192.30.252.0/22",
+      "185.199.108.0/22",
+      "140.82.112.0/20",
+      "143.55.64.0/20"
+    ]
+    description = "Jenkins - GitHub webhook IPs only"
+  }
 
   ingress {
     from_port   = 9000
@@ -233,6 +233,14 @@ resource "aws_security_group" "rds" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
+    security_groups = [aws_eks_cluster.main.vpc_config[0].cluster_security_group_id]
+    description     = "Allow EKS cluster SG (managed nodes) to connect to PostgreSQL"
+  }
+
+  ingress {
+    from_port       = 5432
+    to_port         = 5432
+    protocol        = "tcp"
     security_groups = [aws_security_group.jenkins.id]
     description     = "Allow Jenkins to connect to PostgreSQL"
   }
@@ -266,6 +274,14 @@ resource "aws_security_group" "redis" {
     protocol        = "tcp"
     security_groups = [aws_security_group.eks_nodes.id]
     description     = "Allow EKS nodes to connect to Redis"
+  }
+
+  ingress {
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [aws_eks_cluster.main.vpc_config[0].cluster_security_group_id]
+    description     = "Allow EKS cluster SG (managed nodes) to connect to Redis"
   }
 
   egress {
