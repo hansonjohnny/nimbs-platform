@@ -4,18 +4,18 @@ image:
 
 secretName: cart-service-secrets
 
+livenessProbe:
+  path: /healthz
+
+readinessProbe:
+  path: /readyz
+
 env:
   - name: PORT
     value: "3000"
-  - name: DB_NAME
-    value: "cart"
-  - name: REDIS_PORT
-    value: "6379"
+  - name: REDIS_URL
+    value: "redis://nimbus-retail-redis.hfccii.ng.0001.use2.cache.amazonaws.com:6379"
 
 secretEnv:
-  - name: DB_HOST
-    key: db-host
-  - name: DB_PASSWORD
-    key: db-password
-  - name: REDIS_HOST
-    key: redis-host
+  - name: DATABASE_URL
+    key: database-url

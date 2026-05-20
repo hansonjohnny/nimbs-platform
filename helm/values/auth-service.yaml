@@ -4,16 +4,18 @@ image:
 
 secretName: auth-service-secrets
 
+livenessProbe:
+  path: /healthz
+
+readinessProbe:
+  path: /readyz
+
 env:
   - name: PORT
     value: "3000"
-  - name: DB_NAME
-    value: "auth"
 
 secretEnv:
-  - name: DB_HOST
-    key: db-host
-  - name: DB_PASSWORD
-    key: db-password
+  - name: DATABASE_URL
+    key: database-url
   - name: JWT_SECRET
     key: jwt-secret

@@ -2,8 +2,13 @@ image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/catalog-service
   tag: "21"
 
-
 secretName: catalog-service-secrets
+
+livenessProbe:
+  path: /healthz
+
+readinessProbe:
+  path: /readyz
 
 env:
   - name: PORT
