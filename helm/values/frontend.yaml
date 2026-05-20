@@ -1,10 +1,7 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/frontend
-<<<<<<< Updated upstream
   tag: "31"
-=======
-  tag: "latest"
->>>>>>> Stashed changes
+
 
 service:
   type: ClusterIP

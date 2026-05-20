@@ -1,10 +1,6 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/cart-service
-<<<<<<< Updated upstream
   tag: "22"
-=======
-  tag: "latest"
->>>>>>> Stashed changes
 
 secretName: cart-service-secrets
 

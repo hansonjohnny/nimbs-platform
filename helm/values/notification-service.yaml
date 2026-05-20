@@ -1,10 +1,6 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/notification-service
-<<<<<<< Updated upstream
   tag: "20"
-=======
-  tag: "latest"
->>>>>>> Stashed changes
 
 secretName: notification-service-secrets
 
