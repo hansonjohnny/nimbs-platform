@@ -17,34 +17,34 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api/auth
+          - path: /auth
             pathType: Prefix
             backend:
               service:
                 name: auth-service
                 port:
-                  number: 80
-          - path: /api/cart
+                  number: 3001
+          - path: /cart
             pathType: Prefix
             backend:
               service:
                 name: cart-service
                 port:
-                  number: 80
-          - path: /api/catalog
+                  number: 3003
+          - path: /products
             pathType: Prefix
             backend:
               service:
                 name: catalog-service
                 port:
-                  number: 80
-          - path: /api/orders
+                  number: 3002
+          - path: /orders
             pathType: Prefix
             backend:
               service:
                 name: order-service
                 port:
-                  number: 80
+                  number: 3004
           - path: /
             pathType: Prefix
             backend:

@@ -4,6 +4,11 @@ image:
 
 secretName: order-service-secrets
 
+service:
+  type: ClusterIP
+  port: 3004
+  targetPort: 3000
+
 livenessProbe:
   path: /healthz
 

@@ -4,6 +4,11 @@ image:
 
 secretName: auth-service-secrets
 
+service:
+  type: ClusterIP
+  port: 3001
+  targetPort: 3000
+
 livenessProbe:
   path: /healthz
 

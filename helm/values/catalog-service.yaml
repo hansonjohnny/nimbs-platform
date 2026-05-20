@@ -4,6 +4,11 @@ image:
 
 secretName: catalog-service-secrets
 
+service:
+  type: ClusterIP
+  port: 3002
+  targetPort: 3000
+
 livenessProbe:
   path: /healthz
 
