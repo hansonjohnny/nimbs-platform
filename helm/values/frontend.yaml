@@ -18,6 +18,9 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 5
 
+securityContext:
+  runAsUser: 0
+
 resources:
   requests:
     memory: "64Mi"

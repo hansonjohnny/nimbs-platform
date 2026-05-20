@@ -19,6 +19,10 @@ spec:
         - name: {{ .Release.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.securityContext }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           {{- if or .Values.env .Values.secretEnv }}
