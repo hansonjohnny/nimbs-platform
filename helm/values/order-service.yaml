@@ -1,6 +1,6 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/order-service
-  tag: "17"
+  tag: "19"
 
 secretName: order-service-secrets
 
