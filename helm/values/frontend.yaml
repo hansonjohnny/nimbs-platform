@@ -28,3 +28,13 @@ resources:
   limits:
     memory: "128Mi"
     cpu: "100m"
+
+extraVolumeMounts:
+  - name: html-override
+    mountPath: /usr/share/nginx/html/index.html
+    subPath: index.html
+
+extraVolumes:
+  - name: html-override
+    configMap:
+      name: frontend-html
