@@ -4,12 +4,16 @@ image:
 
 secretName: notification-service-secrets
 
+livenessProbe:
+  path: /healthz
+
+readinessProbe:
+  path: /readyz
+
 env:
   - name: PORT
     value: "3000"
   - name: KAFKA_GROUP_ID
     value: "notification-service"
-
-secretEnv:
-  - name: KAFKA_BROKER
-    key: kafka-broker
+  - name: KAFKA_BROKERS
+    value: "kafka:9092"
