@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-databases
+  namespace: nimb
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: psql
+          image: postgres:16
+          env:
+            - name: PGPASSWORD
+              value: "newPASS247"
+          command:
+            - sh
+            - -c
+            - |
+              psql -h nimbus-retail-postgres.c14y0w8mk7d5.us-east-2.rds.amazonaws.com -U postgres -c "CREATE DATABASE auth" || true
+              psql -h nimbus-retail-postgres.c14y0w8mk7d5.us-east-2.rds.amazonaws.com -U postgres -c "CREATE DATABASE cart" || true
+              psql -h nimbus-retail-postgres.c14y0w8mk7d5.us-east-2.rds.amazonaws.com -U postgres -c "CREATE DATABASE catalog" || true
+              psql -h nimbus-retail-postgres.c14y0w8mk7d5.us-east-2.rds.amazonaws.com -U postgres -c "CREATE DATABASE orders" || true
+              echo "Done"

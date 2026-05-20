@@ -1,0 +1,19 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cmd /c \"kubectl logs -n nimb catalog-service-6bb59d5c4c-sd42s --previous\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "CREATE": true,
+        "\\\"": true,
+        "/^cmd /c \"kubectl describe externalsecret auth-service-secrets -n nimb\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "aws": true,
+        "/^\\$ts = Get-Date -UFormat %s\ncmd /c \"kubectl annotate externalsecret auth-service-secrets -n nimb force-sync=\\$ts --overwrite\"\ncmd /c \"kubectl annotate externalsecret cart-service-secrets -n nimb force-sync=\\$ts --overwrite\"\ncmd /c \"kubectl annotate externalsecret order-service-secrets -n nimb force-sync=\\$ts --overwrite\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
