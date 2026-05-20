@@ -1,6 +1,10 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/order-service
+<<<<<<< Updated upstream
   tag: "19"
+=======
+  tag: "latest"
+>>>>>>> Stashed changes
 
 secretName: order-service-secrets
 

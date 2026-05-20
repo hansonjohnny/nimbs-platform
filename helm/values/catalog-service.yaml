@@ -1,6 +1,10 @@
 image:
   repository: 493042495566.dkr.ecr.us-east-2.amazonaws.com/nimbus-retail/catalog-service
+<<<<<<< Updated upstream
   tag: "21"
+=======
+  tag: "latest"
+>>>>>>> Stashed changes
 
 secretName: catalog-service-secrets
 
