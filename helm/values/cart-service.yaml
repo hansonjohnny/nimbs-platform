@@ -26,3 +26,5 @@ env:
 secretEnv:
   - name: DATABASE_URL
     key: database-url
+  - name: JWT_SECRET
+    key: jwt-secret
